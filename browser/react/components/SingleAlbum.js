@@ -22,7 +22,7 @@ export default class SingleAlbum extends Component {
   }
 
   render() {
-    const album = this.props.album;
+    const album = this.state.album;
 
     return (
       <div className="album">

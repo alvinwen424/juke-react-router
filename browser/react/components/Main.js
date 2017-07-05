@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { HashRouter as Router, Route } from 'react-router-dom';
 
 import AllAlbums from './AllAlbums';
 import SingleAlbum from './SingleAlbum';
+import AllArtists from './AllArtists';
+import SingleArtist from './SingleArtist';
 import Sidebar from './Sidebar';
 import Player from './Player';
 
 export default class Main extends Component {
-
   constructor(props) {
     super(props);
-    this.state = {
-      albums: [],
-      selectedAlbum: {}
-    };
-    this.selectAlbum = this.selectAlbum.bind(this);
-    this.deselectAlbum = this.deselectAlbum.bind(this);
+    this.state = {};
   }
 
   render() {
@@ -29,7 +24,9 @@ export default class Main extends Component {
           <div className="col-xs-10">
             <Route exact path="/" component={AllAlbums} />
             <Route exact path="/albums" component={AllAlbums} />
-            <Route path="/albums/:albumId" render={({ match }) => (<SingleAlbum albumId={match.params.albumId} />)} />
+            <Route path="/albums/:albumId" render={ ({ match }) => (<SingleAlbum albumId={match.params.albumId} />)} />
+            <Route exact path="/artists" component={AllArtists} />
+            <Route path="/artists/:artistId" render={ ({ match }) => (<SingleArtist artistId={match.params.artistId} />)} />
           </div>
           <Player />
         </div>

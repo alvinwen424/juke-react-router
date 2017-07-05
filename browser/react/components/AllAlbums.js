@@ -19,8 +19,7 @@ export default class AllAlbums extends Component {
   }
 
   render() {
-    const albums = this.props.albums;
-
+    const albums = this.state.albums;
     return (
       <div>
         <h3>Albums</h3>
