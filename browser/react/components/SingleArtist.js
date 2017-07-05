@@ -37,7 +37,6 @@ export default class SingleArtist extends Component {
         const artist = this.state.artist;
         const songs = this.state.songs;
         const albums = this.state.albums;
-        console.log(albums);
 
         return (
             <div className="artist">

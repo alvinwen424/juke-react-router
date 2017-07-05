@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
 
-import AllAlbums from './AllAlbums';
+import StatefulAlbums from './StatefulAlbums';
 import SingleAlbum from './SingleAlbum';
 import AllArtists from './AllArtists';
 import SingleArtist from './SingleArtist';
@@ -22,8 +22,8 @@ export default class Main extends Component {
             <Sidebar />
           </div>
           <div className="col-xs-10">
-            <Route exact path="/" component={AllAlbums} />
-            <Route exact path="/albums" component={AllAlbums} />
+            <Route exact path="/" component={StatefulAlbums} />
+            <Route exact path="/albums" component={StatefulAlbums} />
             <Route path="/albums/:albumId" render={ ({ match }) => (<SingleAlbum albumId={match.params.albumId} />)} />
             <Route exact path="/artists" component={AllArtists} />
             <Route path="/artists/:artistId" render={ ({ match }) => (<SingleArtist artistId={match.params.artistId} />)} />
