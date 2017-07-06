@@ -8050,6 +8050,10 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Audio = __webpack_require__(258);
+
+var _Audio2 = _interopRequireDefault(_Audio);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Songs = function Songs(props) {
@@ -13259,6 +13263,15 @@ var Sidebar = function Sidebar() {
           { to: '/albums' },
           'BUMS'
         )
+      ),
+      _react2.default.createElement(
+        'h4',
+        { className: 'menu-item active' },
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/artists' },
+          'TISTS'
+        )
       )
     )
   );
@@ -13379,6 +13392,8 @@ var _axios = __webpack_require__(31);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _reactRouterDom = __webpack_require__(30);
+
 var _Songs = __webpack_require__(70);
 
 var _Songs2 = _interopRequireDefault(_Songs);
@@ -13445,15 +13460,45 @@ var SingleArtist = function (_Component) {
             var albums = this.state.albums;
 
             return _react2.default.createElement(
-                'div',
-                { className: 'artist' },
+                _reactRouterDom.HashRouter,
+                null,
                 _react2.default.createElement(
-                    'h3',
+                    'div',
                     null,
-                    artist.name
-                ),
-                _react2.default.createElement(_AllAlbums2.default, { albums: albums }),
-                _react2.default.createElement(_Songs2.default, { songs: songs })
+                    _react2.default.createElement(
+                        'h3',
+                        null,
+                        artist.name
+                    ),
+                    _react2.default.createElement(
+                        'ul',
+                        { className: 'nav nav-tabs' },
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            _react2.default.createElement(
+                                _reactRouterDom.Link,
+                                { to: '/artists/' + artist.id + '/albums' },
+                                'ALBUMS'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            _react2.default.createElement(
+                                _reactRouterDom.Link,
+                                { to: '/artists/' + artist.id + '/songs' },
+                                'SONGS'
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(_reactRouterDom.Route, { path: '/artists/' + artist.id + '/albums', render: function render() {
+                            return _react2.default.createElement(_AllAlbums2.default, { albums: albums });
+                        } }),
+                    _react2.default.createElement(_reactRouterDom.Route, { path: '/artists/' + artist.id + '/songs', render: function render() {
+                            return _react2.default.createElement(_Songs2.default, { songs: songs });
+                        } })
+                )
             );
         }
     }]);
@@ -13483,8 +13528,6 @@ var _react2 = _interopRequireDefault(_react);
 var _axios = __webpack_require__(31);
 
 var _axios2 = _interopRequireDefault(_axios);
-
-var _reactRouterDom = __webpack_require__(30);
 
 var _AllAlbums = __webpack_require__(69);
 
@@ -27975,6 +28018,191 @@ var valueEqual = function valueEqual(a, b) {
 };
 
 exports.default = valueEqual;
+
+/***/ }),
+/* 258 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Main = __webpack_require__(106);
+
+var _Main2 = _interopRequireDefault(_Main);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * ---------------------------------------
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  EVERYTHING BELOW IS OPTIONAL, AND NOT REQUIRED DURING THE WORKSHOP!
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * ---------------------------------------
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This component contains all of the state/behavior needed to play music!
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * To make the music come to life, all you need to do is pass down the appropriate props to the
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * components that need them. This is an OPTIONAL exercise that can be done at any point in Juke.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * To start, we must first cause this component to render at the top of our application
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * INSTEAD of our Main component. That way, our Main compponent will instead by rendered BY the
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Audio component, allowing to have all of the song state/behavior passed down to it.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This is known as `component composition` - it is the same principle as composing multiple
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * functions together to create a new function!
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+
+// creates the Audio element
+// While the Audio element is part of HTML5, it doesn't `visually` show up anywhere in the DOM.
+// However, we interact with it the same way we would a DOM node. That's pretty cool!
+
+var AUDIO = document.createElement('audio');
+
+// Some utility functions
+
+var mod = function mod(num, m) {
+  return (num % m + m) % m;
+};
+
+var skip = function skip(interval, _ref) {
+  var currentSongList = _ref.currentSongList,
+      currentSong = _ref.currentSong;
+
+  var idx = currentSongList.map(function (song) {
+    return song.id;
+  }).indexOf(currentSong.id);
+  idx = mod(idx + interval, currentSongList.length);
+  var next = currentSongList[idx];
+  return [next, currentSongList];
+};
+
+// The stateful Audio component
+
+var Audio = function (_Component) {
+  _inherits(Audio, _Component);
+
+  function Audio(props) {
+    _classCallCheck(this, Audio);
+
+    var _this = _possibleConstructorReturn(this, (Audio.__proto__ || Object.getPrototypeOf(Audio)).call(this, props));
+
+    _this.state = {
+      currentSong: {},
+      currentSongList: [],
+      isPlaying: false,
+      progress: 0
+    };
+
+    _this.toggle = _this.toggle.bind(_this);
+    _this.toggleOne = _this.toggleOne.bind(_this);
+    _this.next = _this.next.bind(_this);
+    _this.prev = _this.prev.bind(_this);
+    return _this;
+  }
+
+  _createClass(Audio, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      AUDIO.addEventListener('ended', function () {
+        return _this2.next();
+      });
+      AUDIO.addEventListener('timeupdate', function () {
+        return _this2.setProgress(AUDIO.currentTime / AUDIO.duration);
+      });
+    }
+  }, {
+    key: 'play',
+    value: function play() {
+      AUDIO.play();
+      this.setState({ isPlaying: true });
+    }
+  }, {
+    key: 'pause',
+    value: function pause() {
+      AUDIO.pause();
+      this.setState({ isPlaying: false });
+    }
+  }, {
+    key: 'load',
+    value: function load(currentSong, currentSongList) {
+      AUDIO.src = currentSong.audioUrl;
+      AUDIO.load();
+      this.setState({
+        currentSong: currentSong,
+        currentSongList: currentSongList
+      });
+    }
+  }, {
+    key: 'startSong',
+    value: function startSong(song, list) {
+      this.pause();
+      this.load(song, list);
+      this.play();
+    }
+  }, {
+    key: 'toggleOne',
+    value: function toggleOne(selectedSong, selectedSongList) {
+      if (selectedSong.id !== this.state.currentSong.id) this.startSong(selectedSong, selectedSongList);else this.toggle();
+    }
+  }, {
+    key: 'toggle',
+    value: function toggle() {
+      if (this.state.isPlaying) this.pause();else this.play();
+    }
+  }, {
+    key: 'next',
+    value: function next() {
+      this.startSong.apply(this, _toConsumableArray(skip(1, this.state)));
+    }
+  }, {
+    key: 'prev',
+    value: function prev() {
+      this.startSong.apply(this, _toConsumableArray(skip(-1, this.state)));
+    }
+  }, {
+    key: 'setProgress',
+    value: function setProgress(progress) {
+      this.setState({ progress: progress });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      /**
+       * Here, we pass all of the fields on `this.state`, and a few important methods
+       * down to Main. Of course, Main won't receive these props if we
+       * don't render Audio somewhere....
+       */
+      return _react2.default.createElement(_Main2.default, _extends({}, this.state, {
+        prev: this.prev,
+        next: this.next,
+        toggleOne: this.toggleOne,
+        toggle: this.toggle
+      }));
+    }
+  }]);
+
+  return Audio;
+}(_react.Component);
+
+exports.default = Audio;
 
 /***/ })
 /******/ ]);

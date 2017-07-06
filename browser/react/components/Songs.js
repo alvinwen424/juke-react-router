@@ -1,14 +1,16 @@
 import React from 'react';
 
+import Audio from './Audio';
+
 const Songs = (props) => {
 
   const songs = props.songs;
 
   return (
-    <table className='table'>
+    <table className="table">
       <thead>
         <tr>
-          <th></th>
+          <th />
           <th>Name</th>
           <th>Artists</th>
           <th>Genre</th>
@@ -20,7 +22,7 @@ const Songs = (props) => {
             <tr key={song.id}>
               <td>
                 <button className="btn btn-default btn-xs">
-                  <span className="glyphicon glyphicon-play"></span>
+                  <span className="glyphicon glyphicon-play" />
                 </button>
               </td>
               <td>{ song.name }</td>

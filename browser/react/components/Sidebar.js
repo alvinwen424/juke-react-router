@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
 
@@ -10,9 +10,12 @@ const Sidebar = () => {
         <h4 className="menu-item active">
           <Link to="/albums">BUMS</Link>
         </h4>
+        <h4 className="menu-item active">
+          <Link to="/artists">TISTS</Link>
+        </h4>
       </section>
     </sidebar>
   );
-}
+};
 
 export default Sidebar;

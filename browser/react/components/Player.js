@@ -24,6 +24,6 @@ const Player = (props) => {
       </div>
     </footer>
   );
-}
+};
 
 export default Player;

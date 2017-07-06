@@ -24,9 +24,9 @@ export default class Main extends Component {
           <div className="col-xs-10">
             <Route exact path="/" component={StatefulAlbums} />
             <Route exact path="/albums" component={StatefulAlbums} />
-            <Route path="/albums/:albumId" render={ ({ match }) => (<SingleAlbum albumId={match.params.albumId} />)} />
+            <Route path="/albums/:albumId" render={({ match }) => (<SingleAlbum albumId={match.params.albumId} />)} />
             <Route exact path="/artists" component={AllArtists} />
-            <Route path="/artists/:artistId" render={ ({ match }) => (<SingleArtist artistId={match.params.artistId} />)} />
+            <Route path="/artists/:artistId" render={({ match }) => (<SingleArtist artistId={match.params.artistId} />)} />
           </div>
           <Player />
         </div>

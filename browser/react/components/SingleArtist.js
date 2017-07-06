@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { HashRouter as Router, Link, Route } from 'react-router-dom';
 
 import Songs from './Songs';
 import AllAlbums from './AllAlbums';
@@ -39,11 +40,18 @@ export default class SingleArtist extends Component {
         const albums = this.state.albums;
 
         return (
-            <div className="artist">
-                <h3>{artist.name}</h3>
-                <AllAlbums albums={albums} />
-                <Songs songs={songs} />
-            </div>
+            <Router>
+                <div>
+                    <h3>{artist.name}</h3>
+                    <ul className="nav nav-tabs">
+                        <li><Link to={`/artists/${artist.id}/albums`}>ALBUMS</Link></li>
+                        <li><Link to={`/artists/${artist.id}/songs`}>SONGS</Link></li>
+                    </ul>
+
+                    <Route path={`/artists/${artist.id}/albums`} render={() => <AllAlbums albums={albums} />} />
+                    <Route path={`/artists/${artist.id}/songs`} render={() => <Songs songs={songs} />} />
+                </div>
+            </Router>
         );
     }
 }
