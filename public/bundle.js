@@ -8050,10 +8050,6 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Audio = __webpack_require__(258);
-
-var _Audio2 = _interopRequireDefault(_Audio);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Songs = function Songs(props) {
@@ -8061,58 +8057,60 @@ var Songs = function Songs(props) {
   var songs = props.songs;
 
   return _react2.default.createElement(
-    'table',
-    { className: 'table' },
+    "table",
+    { className: "table" },
     _react2.default.createElement(
-      'thead',
+      "thead",
       null,
       _react2.default.createElement(
-        'tr',
+        "tr",
         null,
-        _react2.default.createElement('th', null),
+        _react2.default.createElement("th", null),
         _react2.default.createElement(
-          'th',
+          "th",
           null,
-          'Name'
+          "Name"
         ),
         _react2.default.createElement(
-          'th',
+          "th",
           null,
-          'Artists'
+          "Artists"
         ),
         _react2.default.createElement(
-          'th',
+          "th",
           null,
-          'Genre'
+          "Genre"
         )
       )
     ),
     _react2.default.createElement(
-      'tbody',
+      "tbody",
       null,
       songs && songs.map(function (song) {
         return _react2.default.createElement(
-          'tr',
+          "tr",
           { key: song.id },
           _react2.default.createElement(
-            'td',
+            "td",
             null,
             _react2.default.createElement(
-              'button',
-              { className: 'btn btn-default btn-xs' },
-              _react2.default.createElement('span', { className: 'glyphicon glyphicon-play' })
+              "button",
+              { className: "btn btn-default btn-xs", onClick: function onClick() {
+                  return props.toggleOne(song, songs);
+                } },
+              _react2.default.createElement("span", { className: "glyphicon glyphicon-play" })
             )
           ),
           _react2.default.createElement(
-            'td',
+            "td",
             null,
             song.name
           ),
           _react2.default.createElement(
-            'td',
+            "td",
             null,
             _react2.default.createElement(
-              'span',
+              "span",
               null,
               song.artists ? song.artists.map(function (artist) {
                 return artist.name;
@@ -8120,7 +8118,7 @@ var Songs = function Songs(props) {
             )
           ),
           _react2.default.createElement(
-            'td',
+            "td",
             null,
             song.genre
           )
@@ -12138,6 +12136,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(4);
@@ -12184,15 +12184,14 @@ var Main = function (_Component) {
   function Main(props) {
     _classCallCheck(this, Main);
 
-    var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
-
-    _this.state = {};
-    return _this;
+    return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
   }
 
   _createClass(Main, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         _reactRouterDom.HashRouter,
         null,
@@ -12211,15 +12210,15 @@ var Main = function (_Component) {
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/albums', component: _StatefulAlbums2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/albums/:albumId', render: function render(_ref) {
                 var match = _ref.match;
-                return _react2.default.createElement(_SingleAlbum2.default, { albumId: match.params.albumId });
+                return _react2.default.createElement(_SingleAlbum2.default, _extends({}, _this2.props, { albumId: match.params.albumId }));
               } }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/artists', component: _AllArtists2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/artists/:artistId', render: function render(_ref2) {
                 var match = _ref2.match;
-                return _react2.default.createElement(_SingleArtist2.default, { artistId: match.params.artistId });
+                return _react2.default.createElement(_SingleArtist2.default, _extends({}, _this2.props, { artistId: match.params.artistId }));
               } })
           ),
-          _react2.default.createElement(_Player2.default, null)
+          _react2.default.createElement(_Player2.default, this.props)
         )
       );
     }
@@ -13198,17 +13197,17 @@ var Player = function Player(props) {
         { className: "pull-left" },
         _react2.default.createElement(
           "button",
-          { className: "btn btn-default" },
+          { className: "btn btn-default", onClick: props.prev },
           _react2.default.createElement("span", { className: "glyphicon glyphicon-step-backward" })
         ),
         _react2.default.createElement(
           "button",
-          { className: "btn btn-default" },
+          { className: "btn btn-default", onClick: props.toggle },
           _react2.default.createElement("span", { className: "glyphicon glyphicon-play" })
         ),
         _react2.default.createElement(
           "button",
-          { className: "btn btn-default" },
+          { className: "btn btn-default", onClick: props.next },
           _react2.default.createElement("span", { className: "glyphicon glyphicon-step-forward" })
         )
       ),
@@ -13218,7 +13217,7 @@ var Player = function Player(props) {
         _react2.default.createElement(
           "div",
           { className: "progress" },
-          _react2.default.createElement("div", { className: "progress-bar" })
+          _react2.default.createElement("div", { className: "progress-bar", style: { backgroundColor: 'cornflowerblue', width: 100 * props.progress + "%" } })
         )
       )
     )
@@ -13290,6 +13289,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(4);
@@ -13359,7 +13360,7 @@ var SingleAlbum = function (_Component) {
           ),
           _react2.default.createElement('img', { src: album.imageUrl, className: 'img-thumbnail' })
         ),
-        _react2.default.createElement(_Songs2.default, { songs: album.songs })
+        _react2.default.createElement(_Songs2.default, _extends({}, this.props, { songs: album.songs }))
       );
     }
   }]);
@@ -13379,6 +13380,8 @@ exports.default = SingleAlbum;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -13455,6 +13458,8 @@ var SingleArtist = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
+
             var artist = this.state.artist;
             var songs = this.state.songs;
             var albums = this.state.albums;
@@ -13496,7 +13501,7 @@ var SingleArtist = function (_Component) {
                             return _react2.default.createElement(_AllAlbums2.default, { albums: albums });
                         } }),
                     _react2.default.createElement(_reactRouterDom.Route, { path: '/artists/' + artist.id + '/songs', render: function render() {
-                            return _react2.default.createElement(_Songs2.default, { songs: songs });
+                            return _react2.default.createElement(_Songs2.default, _extends({}, _this3.props, { songs: songs }));
                         } })
                 )
             );
@@ -13594,13 +13599,13 @@ var _reactDom = __webpack_require__(107);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Main = __webpack_require__(106);
+var _Audio = __webpack_require__(258);
 
-var _Main2 = _interopRequireDefault(_Main);
+var _Audio2 = _interopRequireDefault(_Audio);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(_Main2.default, null), document.getElementById('app'));
+_reactDom2.default.render(_react2.default.createElement(_Audio2.default, null), document.getElementById('app'));
 
 /***/ }),
 /* 132 */

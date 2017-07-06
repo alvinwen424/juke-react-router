@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Audio from './Audio';
-
 const Songs = (props) => {
 
   const songs = props.songs;
@@ -21,15 +19,15 @@ const Songs = (props) => {
           songs && songs.map(song => (
             <tr key={song.id}>
               <td>
-                <button className="btn btn-default btn-xs">
+                <button className="btn btn-default btn-xs" onClick={() => props.toggleOne(song, songs)} >
                   <span className="glyphicon glyphicon-play" />
                 </button>
               </td>
-              <td>{ song.name }</td>
+              <td>{song.name}</td>
               <td>
-                <span>{ song.artists ? song.artists.map(artist => artist.name).join(', ') : null }</span>
+                <span>{song.artists ? song.artists.map(artist => artist.name).join(', ') : null}</span>
               </td>
-              <td>{ song.genre }</td>
+              <td>{song.genre}</td>
             </tr>
           ))
         }

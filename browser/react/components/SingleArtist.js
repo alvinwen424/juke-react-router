@@ -49,7 +49,7 @@ export default class SingleArtist extends Component {
                     </ul>
 
                     <Route path={`/artists/${artist.id}/albums`} render={() => <AllAlbums albums={albums} />} />
-                    <Route path={`/artists/${artist.id}/songs`} render={() => <Songs songs={songs} />} />
+                    <Route path={`/artists/${artist.id}/songs`} render={() => <Songs {...this.props} songs={songs} />} />
                 </div>
             </Router>
         );
