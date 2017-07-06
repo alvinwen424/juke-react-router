@@ -17,10 +17,17 @@ const Songs = (props) => {
       <tbody>
         {
           songs && songs.map(song => (
-            <tr key={song.id}>
+            <tr key={song.id} style={
+              props.currentSong.id === song.id
+              ? {backgroundColor: '#606060'}
+              : {backgroundColor: '#303030'}} >
               <td>
                 <button className="btn btn-default btn-xs" onClick={() => props.toggleOne(song, songs)} >
-                  <span className="glyphicon glyphicon-play" />
+                  <span className={
+                    props.isPlaying && props.currentSong.id === song.id
+                    ? "glyphicon glyphicon-pause"
+                    : "glyphicon glyphicon-play"
+                  } />
                 </button>
               </td>
               <td>{song.name}</td>

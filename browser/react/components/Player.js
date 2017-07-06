@@ -10,7 +10,10 @@ const Player = (props) => {
             <span className="glyphicon glyphicon-step-backward" />
           </button>
           <button className="btn btn-default" onClick={props.toggle}>
-            <span className="glyphicon glyphicon-play" />
+            {props.isPlaying
+              ? <span className="glyphicon glyphicon-pause" />
+              : <span className="glyphicon glyphicon-play" />
+            }
           </button>
           <button className="btn btn-default" onClick={props.next}>
             <span className="glyphicon glyphicon-step-forward" />
@@ -18,7 +21,7 @@ const Player = (props) => {
         </div>
         <div className="bar">
           <div className="progress">
-            <div className="progress-bar" style={{backgroundColor: 'cornflowerblue', width: `${100 * props.progress}%`}} />
+            <div className="progress-bar" style={{ backgroundColor: 'cornflowerblue', width: `${100 * props.progress}%` }} />
           </div>
         </div>
       </div>

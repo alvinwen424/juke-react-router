@@ -8057,60 +8057,60 @@ var Songs = function Songs(props) {
   var songs = props.songs;
 
   return _react2.default.createElement(
-    "table",
-    { className: "table" },
+    'table',
+    { className: 'table' },
     _react2.default.createElement(
-      "thead",
+      'thead',
       null,
       _react2.default.createElement(
-        "tr",
+        'tr',
         null,
-        _react2.default.createElement("th", null),
+        _react2.default.createElement('th', null),
         _react2.default.createElement(
-          "th",
+          'th',
           null,
-          "Name"
+          'Name'
         ),
         _react2.default.createElement(
-          "th",
+          'th',
           null,
-          "Artists"
+          'Artists'
         ),
         _react2.default.createElement(
-          "th",
+          'th',
           null,
-          "Genre"
+          'Genre'
         )
       )
     ),
     _react2.default.createElement(
-      "tbody",
+      'tbody',
       null,
       songs && songs.map(function (song) {
         return _react2.default.createElement(
-          "tr",
-          { key: song.id },
+          'tr',
+          { key: song.id, style: props.currentSong.id === song.id ? { backgroundColor: '#606060' } : { backgroundColor: '#303030' } },
           _react2.default.createElement(
-            "td",
+            'td',
             null,
             _react2.default.createElement(
-              "button",
-              { className: "btn btn-default btn-xs", onClick: function onClick() {
+              'button',
+              { className: 'btn btn-default btn-xs', onClick: function onClick() {
                   return props.toggleOne(song, songs);
                 } },
-              _react2.default.createElement("span", { className: "glyphicon glyphicon-play" })
+              _react2.default.createElement('span', { className: props.isPlaying && props.currentSong.id === song.id ? "glyphicon glyphicon-pause" : "glyphicon glyphicon-play" })
             )
           ),
           _react2.default.createElement(
-            "td",
+            'td',
             null,
             song.name
           ),
           _react2.default.createElement(
-            "td",
+            'td',
             null,
             _react2.default.createElement(
-              "span",
+              'span',
               null,
               song.artists ? song.artists.map(function (artist) {
                 return artist.name;
@@ -8118,7 +8118,7 @@ var Songs = function Songs(props) {
             )
           ),
           _react2.default.createElement(
-            "td",
+            'td',
             null,
             song.genre
           )
@@ -13203,7 +13203,7 @@ var Player = function Player(props) {
         _react2.default.createElement(
           "button",
           { className: "btn btn-default", onClick: props.toggle },
-          _react2.default.createElement("span", { className: "glyphicon glyphicon-play" })
+          props.isPlaying ? _react2.default.createElement("span", { className: "glyphicon glyphicon-pause" }) : _react2.default.createElement("span", { className: "glyphicon glyphicon-play" })
         ),
         _react2.default.createElement(
           "button",
